@@ -38,9 +38,21 @@ public class HttpServer {
                     header2 +
                     spacer +
                     body).getBytes());
-        } else {
+        } else if (counter <= 10) {
             String responseLine = "HTTP/1.1 200 OK\r\n";
             String body = "<HTML><H1>OH HAI IAM A SERVER number 2</H1></HTML>";
+            String header1 = "Content-Type:text/html\r\n";
+            String header2 = "Content-Length:" + body.getBytes().length + "\r\n";
+            String spacer = "\r\n";
+
+            clientSocket.getOutputStream().write((responseLine +
+                    header1 +
+                    header2 +
+                    spacer +
+                    body).getBytes());
+        } else {
+            String responseLine = "HTTP/1.1 200 OK\r\n";
+            String body = "<HTML><img src='https://media.tenor.com/wMZnKU7tz2AAAAAC/i-love-it.gif'></HTML>";
             String header1 = "Content-Type:text/html\r\n";
             String header2 = "Content-Length:" + body.getBytes().length + "\r\n";
             String spacer = "\r\n";
