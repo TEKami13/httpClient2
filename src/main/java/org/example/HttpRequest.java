@@ -2,6 +2,7 @@ package main.java.org.example;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.HashMap;
 import java.util.Map;
 
 public class HttpRequest {
@@ -11,6 +12,7 @@ public class HttpRequest {
     private String body;
 
     public HttpRequest(Socket clientSocket) throws IOException {
+        headers = new HashMap<>();
         requestLine = readLine(clientSocket);
 
         String headerLine;
@@ -18,6 +20,7 @@ public class HttpRequest {
             String[] headerParts = headerLine.split(" *: *", 2);
             headers.put(headerParts[0], headerParts[1]);
         }
+        printThings();
     }
 
     private String readLine(Socket socket) throws IOException {
@@ -29,5 +32,10 @@ public class HttpRequest {
         }
         character = socket.getInputStream().read();
         return sb.toString();
+    }
+
+    private void printThings() {
+        System.out.println(requestLine);
+        headers.entrySet().forEach(System.out::println);
     }
 }

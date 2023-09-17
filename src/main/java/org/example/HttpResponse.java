@@ -4,7 +4,6 @@ import java.nio.charset.StandardCharsets;
 
 public class HttpResponse {
 
-
     String getResponse() {
         String responseLine = "HTTP/1.1 200 OK\r\n";
         String body = "<HTML><H1>OH HAI IAM A SERVER</H1></HTML>";
