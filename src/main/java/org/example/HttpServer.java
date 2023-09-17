@@ -16,8 +16,20 @@ public class HttpServer {
             HttpRequest request = new HttpRequest(clientSocket);
             HttpResponse response = new HttpResponse();
 
-        clientSocket.getOutputStream().write(
-                response.getResponse().getBytes(StandardCharsets.UTF_8));
+            if (request.getHeaders().get("User-Agent") == null) {
+                clientSocket.getOutputStream().write(
+                        response.getResponse2().getBytes(StandardCharsets.UTF_8));
+            } else if (request.getHeaders().get("User-Agent").contains("Safari") &&
+                    request.getHeaders().get("User-Agent").contains("Chrome")) {
+                clientSocket.getOutputStream().write(
+                        response.getResponse().getBytes(StandardCharsets.UTF_8));
+            } else if (request.getHeaders().get("User-Agent").contains("Safari")) {
+                clientSocket.getOutputStream().write(
+                        response.getResponse2().getBytes(StandardCharsets.UTF_8));
+            } else {
+                clientSocket.getOutputStream().write(
+                        response.getResponse().getBytes(StandardCharsets.UTF_8));
+            }
         clientSocket.getOutputStream().close();
         clientSocket.close();
         }

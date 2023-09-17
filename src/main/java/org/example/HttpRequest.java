@@ -38,4 +38,8 @@ public class HttpRequest {
         System.out.println(requestLine);
         headers.entrySet().forEach(System.out::println);
     }
+
+    public Map<String, String> getHeaders() {
+        return headers;
+    }
 }
