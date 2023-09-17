@@ -20,6 +20,16 @@ public class HttpClientTest {
     }
 
     @Test
+    void shouldMakeHttpCallAndGet200ResponseImage() {
+        HttpClient client = new HttpClient("httpbin.org", 80, "/image/jpeg");
+
+        assert client.statusCode == 200;
+        assert client.headers.get("Content-Type") != null;
+        assert client.body != null;
+
+    }
+
+    @Test
     void makeServerGoBigBig() throws IOException {
         HttpServer server = new HttpServer(8181);
         HttpClient client = new HttpClient("localhost", 8181, "/");
