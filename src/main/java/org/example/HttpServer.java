@@ -17,19 +17,15 @@ public class HttpServer {
         this.serverSocket = new ServerSocket(port);
         headers = new HashMap<>();
         while (true) {
-        Socket clientSocket = serverSocket.accept();
+            Socket clientSocket = serverSocket.accept();
+            HttpRequest request = new HttpRequest(clientSocket);
+            HttpResponse response = new HttpResponse();
 
-        String responseLine = "HTTP/1.1 200 OK\r\n";
-        String body = "<HTML><H1>OH HAI IAM A SERVER</H1></HTML>";
-        String header1 = "Content-Type:text/html\r\n";
-        String header2 = "Content-Length:" + body.getBytes().length + "\r\n";
-        String spacer = "\r\n";
 
-        clientSocket.getOutputStream().write((responseLine +
-                header1 +
-                header2 +
-                spacer +
-                body).getBytes());
+
+
+        clientSocket.getOutputStream().write(
+                response.getResponse().getBytes(StandardCharsets.UTF_8));
         clientSocket.getOutputStream().close();
         clientSocket.close();
 
