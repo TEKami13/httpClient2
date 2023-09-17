@@ -11,6 +11,7 @@ public class HttpClientTest {
 
         assert client.statusCode == 200;
         assert client.headers.get("Content-Type") != null;
+        assert client.body != null;
 
     }
 
