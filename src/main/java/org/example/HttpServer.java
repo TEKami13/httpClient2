@@ -13,6 +13,7 @@ public class HttpServer {
 
         Socket clientSocket = serverSocket.accept();
         String requestLine = readLine(clientSocket);
+        System.out.println(requestLine);
 
 
     }
