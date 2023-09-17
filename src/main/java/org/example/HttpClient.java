@@ -31,8 +31,6 @@ public class HttpClient {
                 headers.put(headerParts[0], headerParts[1]);
             }
 
-            headers.forEach((key, value) -> System.out.printf("key: %s value: %s%n", key, value));
-
             StringBuilder body = new StringBuilder();
             for (int i = 0; i < getContentLength(); i++) {
                 body.append((char) socket.getInputStream().read());
