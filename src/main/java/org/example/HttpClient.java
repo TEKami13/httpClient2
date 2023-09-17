@@ -2,7 +2,6 @@ package main.java.org.example;
 
 import java.io.IOException;
 import java.net.Socket;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,8 +41,6 @@ public class HttpClient {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        System.out.println(this.body);
     }
 
     private int getContentLength() {
