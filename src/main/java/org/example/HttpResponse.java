@@ -1,7 +1,5 @@
 package main.java.org.example;
 
-import java.nio.charset.StandardCharsets;
-
 public class HttpResponse {
 
     String getResponse() {

@@ -7,9 +7,8 @@ import java.util.Map;
 
 public class HttpRequest {
 
-    private String requestLine;
-    private Map<String, String> headers;
-    private String body;
+    private final String requestLine;
+    private final Map<String, String> headers;
 
     public HttpRequest(Socket clientSocket) throws IOException {
         headers = new HashMap<>();
