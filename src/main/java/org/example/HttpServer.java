@@ -18,13 +18,6 @@ public class HttpServer {
         headers = new HashMap<>();
         while (true) {
         Socket clientSocket = serverSocket.accept();
-        requestLine = readLine(clientSocket);
-
-        String headerLine;
-        while (!(headerLine = readLine(clientSocket)).isEmpty()) {
-            String[] headerParts = headerLine.split(" *: *", 2);
-            headers.put(headerParts[0], headerParts[1]);
-        }
 
         String responseLine = "HTTP/1.1 200 OK\r\n";
         String body = "<HTML><H1>OH HAI IAM A SERVER</H1></HTML>";
@@ -42,17 +35,6 @@ public class HttpServer {
 
         printThings();
         }
-    }
-
-    private String readLine(Socket socket) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        int character;
-
-        while ((character = socket.getInputStream().read()) != '\r') {
-            sb.append((char)character); //char is important
-        }
-        character = socket.getInputStream().read();
-        return sb.toString();
     }
 
     private void printThings() {
