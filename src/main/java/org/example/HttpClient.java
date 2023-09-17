@@ -31,9 +31,11 @@ public class HttpClient {
                 headers.put(headerParts[0], headerParts[1]);
             }
 
+            headers.forEach((key, value) -> System.out.printf("key: %s value: %s%n", key, value));
+
             StringBuilder body = new StringBuilder();
             for (int i = 0; i < getContentLength(); i++) {
-                body.append(readLine(socket));
+                body.append((char) socket.getInputStream().read());
             }
 
             this.body = body.toString();
@@ -42,6 +44,8 @@ public class HttpClient {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        System.out.println(this.body);
     }
 
     private int getContentLength() {
