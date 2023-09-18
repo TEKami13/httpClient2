@@ -7,6 +7,26 @@ import java.util.Map;
 
 public class HttpRequest {
 
+    public String getMethod() {
+        return method;
+    }
+
+    public String getResource() {
+        return resource;
+    }
+
+    public String getHttpVersion() {
+        return httpVersion;
+    }
+
+    public Map<String, String> getHeaders() {
+        return headers;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
     private String method;
     private String resource;
     private String httpVersion;

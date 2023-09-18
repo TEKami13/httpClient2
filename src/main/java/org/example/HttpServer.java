@@ -17,7 +17,7 @@ public class HttpServer extends Thread {
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             while (true) {
                 Socket clientSocket = serverSocket.accept();
-                new http.server.HttpRequestHandler(clientSocket).start();
+                new HttpRequestHandler(clientSocket).start();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
