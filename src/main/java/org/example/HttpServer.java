@@ -13,6 +13,10 @@ public class HttpServer {
         this.serverSocket = new ServerSocket(port);
         while (true) {
             Socket clientSocket = serverSocket.accept();
+
+            HttpRequestHandler requestHandler = new HttpRequestHandler(clientSocket);
+            requestHandler.start();
+
             HttpRequest request = new HttpRequest(clientSocket);
             HttpResponse response = new HttpResponse();
 
