@@ -1,15 +1,20 @@
 package main.java.org.example;
 
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HttpResponse {
 
-    String getResponse() {
-        String responseLine = "HTTP/1.1 200 OK\r\n";
-        String body = "<HTML><H1>OH HAI IAM A SERVER</H1></HTML>";
-        String header1 = "Content-Type:text/html\r\n";
-        String header2 = "Content-Length:" + body.getBytes().length + "\r\n";
-        String spacer = "\r\n";
-        return responseLine + header1 + header2 + spacer + body;
+    public final String statusLine;
+    public final Map<String, String> headers;
+    public final String body;
+
+    public HttpResponse(HttpRequest request) {
+        headers = new HashMap<>();
+        body = "<html><h1>Hello world!</h1></html>";
+        statusLine = "HTTP/1.1 200 OK\r\n";
+        headers.put("Content-Length", body.getBytes(StandardCharsets.UTF_8).length + "\r\n");
+        headers.put("Content-Type", "text/html\r\n");
     }
 }
